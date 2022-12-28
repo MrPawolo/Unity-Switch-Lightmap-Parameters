@@ -1,0 +1,18 @@
+using UnityEngine;
+using UnityEditor;
+
+
+public class LightmapParametersSwitcher : MonoBehaviour
+{
+    public LightmapParameters lightmapParameters;
+
+    [ContextMenu("SwitchParameters")]
+    void SwitchParameters()
+    {
+        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
+        SerializedObject serializedObject = new SerializedObject(meshRenderer);
+        SerializedProperty lighgtmapParammeters = serializedObject.FindProperty("m_LightmapParameters");
+        lighgtmapParammeters.objectReferenceValue = lightmapParameters;
+        serializedObject.ApplyModifiedProperties();
+    }
+}
